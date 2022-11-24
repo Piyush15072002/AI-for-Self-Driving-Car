@@ -16,3 +16,10 @@ from torch.autograd import Variable
 class Network(nn.Module):
     def __init__(self, input_size, nb_action):
         # We will pass the input size and output size in self, input size is 5 (All 3 signals, orientation, etc) and action or output is of size 3 (Straight, left, right)
+        super(Network, self).__init__()
+        self.input_size = input_size # 5 neuron in input layer of neural network
+        self.nb.action = nb_action # 3 neuron in action layer of neural network
+        self.fc1 = nn.Linear(input_size, 30) # to make connection between the input layer and the hidden layer
+        # 30 is the neurons in the hidden layer, this value can be anything but after trying many architectures, this seems best
+        self.fc2 = nn.Linear(30, nb_action)
+        # Neural Network = 5 -> 30 -> 3
