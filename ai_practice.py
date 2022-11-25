@@ -23,3 +23,9 @@ class Network(nn.Module):
         # 30 is the neurons in the hidden layer, this value can be anything but after trying many architectures, this seems best
         self.fc2 = nn.Linear(30, nb_action)
         # Neural Network = 5 -> 30 -> 3
+    
+    # forward propagation
+    def forward(self, state):
+        x = F.relu(self.fc1(state))
+        q_values= self.fc2(x)
+        return q_values
